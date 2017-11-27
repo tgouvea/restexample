@@ -20,8 +20,8 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping
-    public ResponseEntity<?> getAll(){
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Customer>> getAll(){
 
         List<Customer> customers = customerService.getAll();
 
@@ -29,9 +29,8 @@ public class CustomerController {
 
     }
 
-    @PostMapping
-    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Customer customer){
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Customer> create(@RequestBody Customer customer){
 
         Customer customerSaved = customerService.save(customer);
 
